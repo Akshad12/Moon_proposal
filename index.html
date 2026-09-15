@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question 🌙</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;color:#fff;overflow:hidden}
+body{
+  background:radial-gradient(circle at 50% 20%,#26345e 0,#11162e 38%,#050713 78%);
+}
+#stars{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.star{
+  position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;
+  opacity:.7;animation:twinkle 2.5s infinite ease-in-out;
+}
+@keyframes twinkle{50%{opacity:.15;transform:scale(.65)}}
+.screen{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;pointer-events:none;transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.screen.active{opacity:1;pointer-events:auto;transform:translateY(0)}
+.card{text-align:center;max-width:560px;width:100%}
+.moon{
+  width:150px;height:150px;margin:0 auto 34px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fffdf1 0 20%,#eee7c9 55%,#b9b18d 100%);
+  box-shadow:0 0 35px rgba(255,245,190,.35),0 0 100px rgba(130,150,255,.16);
+  position:relative;
+}
+.crater{position:absolute;border-radius:50%;background:rgba(130,125,100,.16)}
+.c1{width:27px;height:27px;left:34px;top:35px}.c2{width:17px;height:17px;right:31px;top:46px}
+.c3{width:35px;height:35px;left:70px;bottom:27px}.c4{width:13px;height:13px;left:39px;bottom:38px}
+h1{font-size:clamp(30px,7vw,54px);margin:0 0 18px;letter-spacing:-1px}
+p{font-size:18px;line-height:1.6;color:#d8dcf2;margin:0 auto 30px}
+.small{font-size:14px;color:#aeb5d5}
+button{
+  border:0;border-radius:999px;padding:14px 24px;margin:6px;font-size:16px;
+  cursor:pointer;background:#fff;color:#12162a;font-weight:700;
+  transition:transform .2s,box-shadow .2s;
+}
+button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.18)}
+.secondary{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.heart{font-size:42px;margin-bottom:15px;animation:float 2.5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.signature{margin-top:25px;font-size:14px;color:#9fa8cc}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+
+<section class="screen active" id="s1">
+  <div class="card">
+    <div class="moon"><i class="crater c1"></i><i class="crater c2"></i><i class="crater c3"></i><i class="crater c4"></i></div>
+    <h1>Hey… 🌙</h1>
+    <p>I have a little question for you.<br>But first… you have to find out why the moon is here.</p>
+    <button onclick="go(2)">Find out →</button>
+  </div>
+</section>
+
+<section class="screen" id="s2">
+  <div class="card">
+    <div class="moon"><i class="crater c1"></i><i class="crater c2"></i><i class="crater c3"></i><i class="crater c4"></i></div>
+    <h1>Maybe I found the answer. 🌙</h1>
+    <p>Some nights, you look at the moon and suddenly think of one particular person.</p>
+    <button onclick="go(3)">Who? 👀</button>
+  </div>
+</section>
+
+<section class="screen" id="s3">
+  <div class="card">
+    <div class="heart">🌙✨</div>
+    <h1>Maybe… you.</h1>
+    <p>So here's the question I've been wanting to ask:</p>
+    <h1 style="font-size:clamp(28px,6vw,44px)">Will you be my moon? 🌙</h1>
+    <p class="small">And I'll be your night, always cheering for your light.</p>
+    <button onclick="go(4)">Yes 🌙</button>
+    <button class="secondary" onclick="go(5)">Maybe… 👀</button>
+  </div>
+</section>
+
+<section class="screen" id="s4">
+  <div class="card">
+    <div class="heart">🌙💫</div>
+    <h1>Then it's a deal. ❤️</h1>
+    <p>The night just got a little brighter.</p>
+    <div class="signature">— from someone who really likes you 🌙</div>
+  </div>
+</section>
+
+<section class="screen" id="s5">
+  <div class="card">
+    <div class="heart">👀🌙</div>
+    <h1>I'll take that as a “maybe.” 😂</h1>
+    <p>No pressure. I just wanted you to know that you're pretty special to me.</p>
+    <div class="signature">— your moon admirer 🌙</div>
+  </div>
+</section>
+
+<script>
+const stars=document.getElementById("stars");
+for(let i=0;i<90;i++){
+  const s=document.createElement("span");
+  s.className="star";
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  s.style.animationDelay=(Math.random()*3)+"s";
+  s.style.opacity=(.25+Math.random()*.75);
+  stars.appendChild(s);
+}
+function go(n){
+  document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+  document.getElementById("s"+n).classList.add("active");
+}
+</script>
+</body>
+</html>
